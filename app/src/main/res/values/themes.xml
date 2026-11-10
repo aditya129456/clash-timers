@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ClashTimer" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- SyncActivity: invisible, no window animation, so tapping Sync looks like nothing opened. -->
+    <style name="Theme.ClashTimer.Invisible" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>

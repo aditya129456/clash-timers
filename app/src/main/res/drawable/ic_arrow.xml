@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The arrow before the target level, drawn as an image: Lilita One has no U+2192 glyph and
+     the phone's system font draws it as "ʼn". -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="10dp" android:height="10dp" android:viewportWidth="10" android:viewportHeight="10">
+    <path android:strokeColor="#E9DCC8" android:strokeWidth="1.4" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:fillColor="#00000000"
+        android:pathData="M1.2,5L8.4,5M5.6,2.2L8.4,5L5.6,7.8" />
+</vector>

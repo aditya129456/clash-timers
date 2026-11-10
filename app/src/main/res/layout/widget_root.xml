@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The widget. Only the wooden panel is drawn; the root is
+     transparent so the wallpaper shows around it. Rows are added at runtime (widget_row*.xml). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@drawable/widget_panel"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!-- Header: the whole row is the Sync button. -->
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:id="@+id/who"
+                style="@style/WidgetText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:shadowColor="#73000000"
+                android:shadowDy="2"
+                android:shadowRadius="0.01"
+                android:ellipsize="end"
+                android:text="Chief"
+                android:textSize="17dp" />
+
+            <LinearLayout
+                android:id="@+id/sync_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_sync"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="6dp">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/ic_sync" />
+
+                <TextView
+                    style="@style/WidgetText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:shadowRadius="0"
+                    android:shadowDy="0"
+                    android:text="Sync"
+                    android:textColor="@color/w_sync_text"
+                    android:textSize="13dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Everything below the header when there is data. -->
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- BUILDERS x/6 + Goblin   [Bite] [+1] -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp">
+
+                <TextView
+                    android:id="@+id/builders_label"
+                    style="@style/WidgetText.Section"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="BUILDERS" />
+
+                <LinearLayout
+                    android:id="@+id/pill_bite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:background="@drawable/pill_off"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Tap: one more hour (stacked after a running one). -->
+                    <LinearLayout
+                        android:id="@+id/pill_bite_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="7dp"
+                        android:paddingEnd="7dp">
+
+                        <ImageView
+                            android:id="@+id/pill_bite_icon"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="3dp"
+                            android:src="@drawable/ic_builder_bite" />
+
+                        <TextView
+                            android:id="@+id/pill_bite_text"
+                            style="@style/WidgetText.Pill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bite" />
+                    </LinearLayout>
+
+                    <!-- Small "−": undo the last hour. Shown only while a boost of this type runs or is queued. -->
+                    <LinearLayout
+                        android:id="@+id/pill_bite_undo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingEnd="6dp"
+                        android:visibility="gone">
+
+                        <!-- ImageView, not View: RemoteViews only inflates whitelisted classes. -->
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="12dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/pill_divider" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="6dp"
+                            android:src="@drawable/ic_minus" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pill_bpot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/pill_off"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Tap: one more hour (stacked after a running one). -->
+                    <LinearLayout
+                        android:id="@+id/pill_bpot_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="7dp"
+                        android:paddingEnd="7dp">
+
+                        <ImageView
+                            android:id="@+id/pill_bpot_icon"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="3dp"
+                            android:src="@drawable/ic_builder_potion" />
+
+                        <TextView
+                            android:id="@+id/pill_bpot_text"
+                            style="@style/WidgetText.Pill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+1" />
+                    </LinearLayout>
+
+                    <!-- Small "−": undo the last hour. Shown only while a boost of this type runs or is queued. -->
+                    <LinearLayout
+                        android:id="@+id/pill_bpot_undo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingEnd="6dp"
+                        android:visibility="gone">
+
+                        <!-- ImageView, not View: RemoteViews only inflates whitelisted classes. -->
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="12dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/pill_divider" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="6dp"
+                            android:src="@drawable/ic_minus" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rows_builders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <!-- LAB   [+1] -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp">
+
+                <TextView
+                    style="@style/WidgetText.Section"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="LAB" />
+
+                <LinearLayout
+                    android:id="@+id/pill_rpot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:background="@drawable/pill_off"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Tap: one more hour (stacked after a running one). -->
+                    <LinearLayout
+                        android:id="@+id/pill_rpot_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="7dp"
+                        android:paddingEnd="7dp">
+
+                        <ImageView
+                            android:id="@+id/pill_rpot_icon"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="3dp"
+                            android:src="@drawable/ic_research_potion" />
+
+                        <TextView
+                            android:id="@+id/pill_rpot_text"
+                            style="@style/WidgetText.Pill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+1" />
+                    </LinearLayout>
+
+                    <!-- Small "−": undo the last hour. Shown only while a boost of this type runs or is queued. -->
+                    <LinearLayout
+                        android:id="@+id/pill_rpot_undo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingEnd="6dp"
+                        android:visibility="gone">
+
+                        <!-- ImageView, not View: RemoteViews only inflates whitelisted classes. -->
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="12dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/pill_divider" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="6dp"
+                            android:src="@drawable/ic_minus" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rows_lab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <!-- PETS   [+1] -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp">
+
+                <TextView
+                    style="@style/WidgetText.Section"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PETS" />
+
+                <LinearLayout
+                    android:id="@+id/pill_ppot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:background="@drawable/pill_off"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Tap: one more hour (stacked after a running one). -->
+                    <LinearLayout
+                        android:id="@+id/pill_ppot_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="7dp"
+                        android:paddingEnd="7dp">
+
+                        <ImageView
+                            android:id="@+id/pill_ppot_icon"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="3dp"
+                            android:src="@drawable/ic_pet_potion" />
+
+                        <TextView
+                            android:id="@+id/pill_ppot_text"
+                            style="@style/WidgetText.Pill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+1" />
+                    </LinearLayout>
+
+                    <!-- Small "−": undo the last hour. Shown only while a boost of this type runs or is queued. -->
+                    <LinearLayout
+                        android:id="@+id/pill_ppot_undo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingEnd="6dp"
+                        android:visibility="gone">
+
+                        <!-- ImageView, not View: RemoteViews only inflates whitelisted classes. -->
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="12dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/pill_divider" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="6dp"
+                            android:src="@drawable/ic_minus" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rows_pet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <!-- Footer: helper status left, sync age right. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp">
+
+                <TextView
+                    android:id="@+id/foot_left"
+                    style="@style/WidgetText.Footer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/foot_right"
+                    style="@style/WidgetText.Footer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- No data yet (or nothing readable): tap anywhere here to sync. -->
+        <LinearLayout
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="140dp"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/empty_text"
+                style="@style/WidgetText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:singleLine="false"
+                android:text="Copy village data in Clash, then tap Sync"
+                android:textSize="15dp" />
+
+            <TextView
+                style="@style/WidgetText.Footer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Clash: Settings, Data Export, Copy"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,57 @@
+﻿# Clash Timers: R8 rules for the release build. AGP 9 passes every file in src/main/keepRules to R8.
+#
+# How the release is optimised (app/build.gradle.kts, optimization.packageScope): R8 shrinks and
+# renames only androidx.**, kotlin.** and kotlinx.**. The app's own classes (com.aditya.clashtimer.**)
+# are compiled as written and never renamed. The rules below still name everything the app needs,
+# so nothing breaks if that scope is ever widened.
+#
+# Library rules are NOT repeated here: kotlinx.serialization (META-INF/com.android.tools/r8/
+# kotlinx-serialization-*.pro), kotlinx.coroutines, DataStore, Compose, androidx.startup and
+# profileinstaller ship their official consumer rules inside their jars/AARs, and R8 applies them.
+# Check app/build/outputs/mapping/release/configuration.txt to see the full merged set.
+# R8 is off for release builds, so this file is currently unused.
+
+# ---- Readable crash reports --------------------------------------------------------------------
+# Keep line numbers, so library frames can be decoded with the R8 retrace tool and the
+# mapping file of the build.
+-keepattributes SourceFile,LineNumberTable
+-renamesourcefileattribute SourceFile
+
+# ---- Entry points named in AndroidManifest.xml ---------------------------------------------------
+# AGP generates keep rules for manifest classes too; listed here so they are explicit.
+-keep class com.aditya.clashtimer.ClashApp { <init>(); }
+-keep class com.aditya.clashtimer.MainActivity { <init>(); }
+-keep class com.aditya.clashtimer.sync.SyncActivity { <init>(); }
+-keep class com.aditya.clashtimer.crash.CrashActivity { <init>(); }
+# The widget provider and the app's single broadcast receiver (taps, alarms, boot).
+-keep class com.aditya.clashtimer.widget.ClashWidgetReceiver { <init>(); }
+
+# ---- kotlinx.serialization: the app's @Serializable classes ------------------------------------
+# AppState, AppSettings, BoostSettings, BoostType, BoostUse, HelperLinks, SyncLog, SyncLogEntry are stored as JSON
+# in DataStore. The app calls serializer() directly (no reflective lookup), and the bundled rules
+# already cover that; these are the app-package rules from the kotlinx.serialization README, so a
+# reflective serializer<T>() call added later keeps working too.
+-keepclassmembers @kotlinx.serialization.Serializable class com.aditya.clashtimer.** {
+    *** Companion;
+    *** INSTANCE;
+    kotlinx.serialization.KSerializer serializer(...);
+}
+-if @kotlinx.serialization.Serializable class com.aditya.clashtimer.**
+-keep,includedescriptorclasses class <1>$$serializer { *; }
+# BoostType (a @Serializable enum) is written by name.
+-keepclassmembers enum com.aditya.clashtimer.** {
+    <fields>;
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+# ---- DataStore ---------------------------------------------------------------------------------
+# Preferences DataStore with string keys only (each value is a JSON string); no Proto DataStore and
+# no generated protobuf classes in the app, so the AAR's own rules are all it needs.
+
+# ---- Loaded by name at runtime -----------------------------------------------------------------
+# - RemoteViews calls framework View methods by name (setBackgroundResource, setChronometer):
+#   framework classes, never touched by R8.
+# - Icons, names.json and upgrade_times.json are assets, which R8 and the resource shrinker leave alone.
+# - Widget layouts/drawables are inflated by the launcher by resource ID: kept by
+#   res/raw/clashtimer_keep.xml (resource shrinker).

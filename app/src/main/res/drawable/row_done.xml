@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Finished row: grey bar across the whole slot (.row.done .fill) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <gradient android:angle="270" android:startColor="#6B7A8A" android:endColor="#4A5563" />
+    <stroke android:width="1.5dp" android:color="#1E160F" />
+    <corners android:radius="7dp" />
+</shape>

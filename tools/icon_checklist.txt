@@ -1,0 +1,212 @@
+Clash Timers widget icons
+=========================
+
+Icons live in app/src/main/assets/icons/ with exactly these names. tools/gen_icons.cjs makes them
+(64x64 WebP) from the clash-of-clans-data images; tools/icons_missing.txt lists the gaps and
+tools/icon_sheet.html shows every icon. A hand-made square <name>.png also works (.webp wins).
+Any missing file is shown as placeholder initials (e.g. "IT" for Inferno Tower).
+Names from clash-of-clans-data@0.19.1. Regenerate: node tools/gen_icon_checklist.cjs <package> tools/icon_checklist.txt
+
+Widget artwork
+--------------
+builder_potion.webp   Builder Potion (Builders section button)
+builder_bite.webp     Builder Bite (Builders section button)
+research_potion.webp  Research Potion (Lab section button)
+pet_potion.webp       Pet Potion (Pets section button)
+apprentice.webp       Builder's Apprentice (helper badge on a builder row)
+lab_assistant.webp    Lab Assistant (helper badge on the lab row)
+goblin.webp           Goblin Builder (inside the GOBLIN tag)
+clock.webp            Clock (before each countdown)
+
+Town Hall (builder)
+-------------------
+1000001.webp          Town Hall
+
+Defenses (builder)
+------------------
+1000012.webp          Air Defense
+1000028.webp          Air Sweeper
+1000009.webp          Archer Tower
+1000032.webp          Bomb Tower
+1000015.webp          Builder's Hut
+1000008.webp          Cannon
+1000097.webp          Crafting Station
+1000031.webp          Eagle Artillery
+1000089.webp          Firespitter
+1000019.webp          Hidden Tesla
+1000027.webp          Inferno Tower
+1000077.webp          Monolith
+1000013.webp          Mortar
+1000084.webp          Multi-Archer Tower
+1000079.webp          Multi-Gear Tower
+1000086.webp          Revenge Tower
+1000085.webp          Ricochet Cannon
+1000067.webp          Scattershot
+1000072.webp          Spell Tower
+1000102.webp          Super Wizard Tower
+1000011.webp          Wizard Tower
+1000021.webp          X-Bow
+
+Crafted defenses and their modules (builder)
+--------------------------------------------
+103000009.webp        Air Bombs
+102000027.webp        Air Bombs Hitpoints (module)
+102000028.webp        Air Bombs Damage (module)
+102000029.webp        Air Bombs Attack Cooldown (module)
+103000013.webp        Cake-A-Pult
+102000039.webp        Cake-A-Pult Hitpoints (module)
+102000040.webp        Cake-A-Pult Damage (module)
+102000041.webp        Cake-A-Pult Explosion Damage (module)
+103000012.webp        Hero Hunter
+102000036.webp        Hero Hunter Hitpoints (module)
+102000037.webp        Hero Hunter Damage (module)
+102000038.webp        Hero Hunter Poison Level (module)
+103000011.webp        Hot Candle
+102000033.webp        Hot Candle Hitpoints (module)
+102000034.webp        Hot Candle Damage (module)
+102000035.webp        Hot Candle Seconds Active (module)
+103000010.webp        Lava Launcher
+102000030.webp        Lava Launcher Hitpoints (module)
+102000031.webp        Lava Launcher Damage (module)
+102000032.webp        Lava Launcher Range (module)
+103000008.webp        Roaster
+102000024.webp        Roaster Hitpoints (module)
+102000025.webp        Roaster Damage (module)
+102000026.webp        Roaster Burst Fire (module)
+
+Traps (builder)
+---------------
+12000005.webp         Air Bomb
+12000000.webp         Bomb
+12000002.webp         Giant Bomb
+12000020.webp         Giga Bomb
+12000006.webp         Seeking Air Mine
+12000008.webp         Skeleton Trap
+12000001.webp         Spring Trap
+12000016.webp         Tornado Trap
+
+Army buildings (builder)
+------------------------
+1000000.webp          Army Camp
+1000006.webp          Barracks
+1000070.webp          Blacksmith
+1000026.webp          Dark Barracks
+1000029.webp          Dark Spell Factory
+1000071.webp          Hero Hall
+1000007.webp          Laboratory
+1000068.webp          Pet House
+1000020.webp          Spell Factory
+1000059.webp          Workshop
+
+Resource buildings (builder)
+----------------------------
+1000014.webp          Clan Castle
+1000023.webp          Dark Elixir Drill
+1000024.webp          Dark Elixir Storage
+1000002.webp          Elixir Collector
+1000003.webp          Elixir Storage
+1000004.webp          Gold Mine
+1000005.webp          Gold Storage
+
+Other buildings (builder)
+-------------------------
+1000064.webp          B.O.B's Hut
+1000093.webp          Helper Hut
+
+Heroes (builder)
+----------------
+28000001.webp         Archer Queen
+28000000.webp         Barbarian King
+28000007.webp         Dragon Duke
+28000002.webp         Grand Warden
+28000006.webp         Minion Prince
+28000004.webp         Royal Champion
+
+Guardians (builder)
+-------------------
+107000008.webp        Logger
+107000000.webp        Longshot
+107000001.webp        Smasher
+
+Troops (lab)
+------------
+4000097.webp          Apprentice Warden
+4000001.webp          Archer
+4000023.webp          Baby Dragon
+4000005.webp          Balloon
+4000000.webp          Barbarian
+4000022.webp          Bowler
+4000065.webp          Dragon Rider
+4000008.webp          Dragon
+4000123.webp          Druid
+4000059.webp          Electro Dragon
+4000095.webp          Electro Titan
+4000150.webp          Furnace
+4000003.webp          Giant
+4000002.webp          Goblin
+4000013.webp          Golem
+4000082.webp          Headhunter
+4000007.webp          Healer
+4000011.webp          Hog Rider
+4000058.webp          Ice Golem
+4000017.webp          Lava Hound
+4000177.webp          Meteor Golem
+4000024.webp          Miner
+4000010.webp          Minion
+4000009.webp          P.E.K.K.A
+4000110.webp          Root Rider
+4000109.webp          Ruin Witch
+4000132.webp          Thrower
+4000012.webp          Valkyrie
+4000004.webp          Wall Breaker
+4000015.webp          Witch
+4000006.webp          Wizard
+4000053.webp          Yeti
+
+Spells (lab)
+------------
+26000123.webp         Angry Spell
+26000028.webp         Bat Spell
+26000016.webp         Clone Spell
+26000010.webp         Earthquake Spell
+26000005.webp         Freeze Spell
+26000011.webp         Haste Spell
+26000001.webp         Healing Spell
+26000109.webp         Ice Block Spell
+26000035.webp         Invisibility Spell
+26000003.webp         Jump Spell
+26000000.webp         Lightning Spell
+26000070.webp         Overgrowth Spell
+26000009.webp         Poison Spell
+26000002.webp         Rage Spell
+26000053.webp         Recall Spell
+26000098.webp         Revive Spell
+26000017.webp         Skeleton Spell
+26000120.webp         Totem Spell
+
+Siege machines (lab)
+--------------------
+4000052.webp          Battle Blimp
+4000092.webp          Battle Drill
+4000091.webp          Flame Flinger
+4000087.webp          Log Launcher
+4000075.webp          Siege Barracks
+4000188.webp          Sky Wagon
+4000062.webp          Stone Slammer
+4000135.webp          Troop Launcher
+4000051.webp          Wall Wrecker
+
+Pets (pet house)
+----------------
+73000011.webp         Angry Jelly
+73000008.webp         Diggy
+73000002.webp         Electro Owl
+73000009.webp         Frosty
+73000017.webp         Greedy Raven
+73000000.webp         L.A.S.S.I
+73000001.webp         Mighty Yak
+73000004.webp         Phoenix
+73000007.webp         Poison Lizard
+73000016.webp         Sneezy
+73000010.webp         Spirit Fox
+73000003.webp         Unicorn

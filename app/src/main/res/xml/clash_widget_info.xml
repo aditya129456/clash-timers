@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Default 4x5. The panel wraps its content and the rest stays transparent.
+     updatePeriodMillis (30 min, the platform minimum) is only a safety net: exact alarms re-render
+     the widget at every countdown edge, finish time and boost edge. -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/widget_description"
+    android:initialLayout="@layout/widget_root"
+    android:previewLayout="@layout/widget_root"
+    android:minWidth="250dp"
+    android:minHeight="320dp"
+    android:minResizeWidth="250dp"
+    android:minResizeHeight="180dp"
+    android:targetCellWidth="4"
+    android:targetCellHeight="5"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen" />

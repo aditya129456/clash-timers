@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Exact alarms re-render the widget at countdown edges (day rollovers, finish times, boost
+         edges). USE_EXACT_ALARM is granted at install on Android 13+; older versions use
+         SCHEDULE_EXACT_ALARM. Without either, a 1-minute window alarm is used instead. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <!-- "Builder free" notifications and rescheduling the alarms after a reboot. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Lets a notification tap open Clash of Clans (package visibility, Android 11+). -->
+    <queries>
+        <package android:name="com.supercell.clashofclans" />
+    </queries>
+
+    <application
+        android:name=".ClashApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ClashTimer">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.ClashTimer"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- R8 on/off for this build (app/build.gradle.kts), shown in crash reports. -->
+        <meta-data
+            android:name="com.aditya.clashtimer.R8"
+            android:value="${r8}" />
+
+        <!-- Crash screen (crash/CrashReporter.kt): own process, so it opens even when the main
+             process is the one that died; own task, so "Close" doesn't return to a broken screen. -->
+        <activity
+            android:name=".crash.CrashActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:label="Clash Timers crash"
+            android:process=":crash"
+            android:taskAffinity="com.aditya.clashtimer.crash"
+            android:theme="@style/Theme.ClashTimer" />
+
+        <!-- Launched by the widget's Sync button: reads the clipboard once focused, then finishes. -->
+        <activity
+            android:name=".sync.SyncActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.ClashTimer.Invisible" />
+
+        <receiver
+            android:name=".widget.ClashWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <!-- Alarms are cleared by a reboot and depend on the clock: reschedule on these. -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/clash_widget_info" />
+        </receiver>
+    </application>
+
+</manifest>

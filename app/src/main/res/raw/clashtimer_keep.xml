@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Resource shrinker: keep everything the widget and the crash notification use. The launcher
+     inflates these in its own process by resource ID, and some are set only from code
+     (RemoteViews.setInt(..., "setBackgroundResource", ...)), so make them explicit. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@layout/widget_*,@drawable/*,@font/lilita_one,@xml/clash_widget_info,@color/w_*,@style/WidgetText*" />

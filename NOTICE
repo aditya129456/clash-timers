@@ -1,0 +1,49 @@
+Clash Timers
+Copyright (c) 2026 Aditya
+
+The MIT License in the LICENSE file covers the original source code of this
+project only. It does not cover the items below, which stay under their own
+terms.
+
+
+GAME ART AND DATA (Supercell)
+
+Clash of Clans names, images and game data are the property of Supercell. They
+are used here under Supercell's Fan Content Policy and are not licensed under
+the MIT License. This includes:
+
+  - app/src/main/assets/icons/            (game images)
+  - app/src/main/assets/names.json        (game names)
+  - app/src/main/assets/upgrade_times.json (game data)
+  - tools/icon_checklist.txt              (game names)
+  - docs/screenshots/                     (game images, as shown in the widget)
+  - app/src/test/resources/fixtures/      (village data in the game's format)
+
+This material is unofficial and is not endorsed by Supercell. For more
+information see Supercell's Fan Content Policy:
+www.supercell.com/fan-content-policy.
+
+
+CLASH-OF-CLANS-DATA
+
+The names, upgrade times and images above were taken from the
+clash-of-clans-data package, version 0.19.1:
+https://github.com/chiefpansancolt/clash-of-clans-data
+
+That package is published under the MIT License,
+Copyright (c) 2026 Christopher Pezza.
+
+
+FONT
+
+Lilita One, by Juan Montoreano, is licensed under the SIL Open Font License,
+Version 1.1. It is not licensed under the MIT License.
+
+  - Font:    app/src/main/res/font/lilita_one.ttf
+  - Licence: app/src/main/assets/licenses/LilitaOne-OFL.txt
+
+
+LIBRARIES
+
+The app is built with AndroidX, Jetpack Compose, Kotlin and kotlinx.serialization,
+which are licensed under the Apache License, Version 2.0.

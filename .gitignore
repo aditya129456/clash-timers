@@ -1,0 +1,40 @@
+# Build outputs
+.gradle/
+.kotlin/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# IDE and OS files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local machine config
+local.properties
+
+# Release signing: never commit these
+*.jks
+*.keystore
+keystore.properties
+
+# Release artifacts (published on GitHub Releases)
+*.apk
+*.aab
+*.idsig
+releases/
+
+# Private working files (real village exports, notes, design drafts).
+# Tests use the anonymized fixtures in app/src/test/resources/fixtures.
+/sample_export*.json
+/export*_notes.md
+/CLAUDE.md
+/widget_mockup.html
+/mockup_*.png
+
+# Tool output
+/tools/retrace.sh
+/tools/icon_sheet.html
+/tools/icons_missing.txt

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "−" undo mark on a running potion/Bite button (drawn, not a font glyph) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="10dp" android:height="10dp" android:viewportWidth="10" android:viewportHeight="10">
+    <path android:strokeColor="#FFD24A" android:strokeWidth="2" android:strokeLineCap="round"
+        android:fillColor="#00000000" android:pathData="M1.5,5L8.5,5" />
+</vector>

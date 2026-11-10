@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Clash Timers</string>
+    <string name="widget_name">Clash Timers</string>
+    <string name="widget_description">Builder, lab and pet house timers from your village data export</string>
+</resources>
